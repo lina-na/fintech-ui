@@ -10,7 +10,7 @@ import useStyles from './SignUpStyles';
 
 import logo from '../../assets/logo.png';
 
-const SignUp = (props: any) => {
+const SignUp = () => {
   const classes = useStyles();
 
 
