@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {UserLoginForm} from '../interfaces/user'
+import {UserLoginForm, UserSignUpForm} from '../interfaces/user'
 import { axiosReqTypes } from '../custom-types/userAuth';
 
 const backend_host = 'http://localhost:8080';
@@ -40,6 +40,20 @@ export const doLogin = async (record: UserLoginForm) => {
       userService.defaults.headers.common['x-token'] = token;
       return token;
     }
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export const doSignUp = async (record: UserSignUpForm) => {
+  try {
+    const {firstname, surname , email, password} = record;
+    const response = await request('post', '/api/user/signup', {firstname, surname, email, password})
+    if (response) {
+      console.log(response);
+      //TODO: check
+    }
+    return response;
   } catch (err) {
     throw new Error(err.message);
   }
