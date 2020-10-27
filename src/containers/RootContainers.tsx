@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useContext }  from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
 import { authContext } from '../contexts/AuthContext';
 
 import Loading from '../components/Loading/Loading';
@@ -12,18 +12,18 @@ const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 const RootContainer: React.FC = () => {
 
     const { auth } = useContext(authContext)
-    console.log(auth);
+    console.log(auth.isLogged);
     return (
-        <Suspense fallback={<Loading />}>
-            <BrowserRouter>
+        <BrowserRouter>
+            <Suspense fallback={<Loading />}>
                 <Switch>
-                    <Route path='/' exact component={Home} />
+                    <Route exact path='/' component={Home} />
                     <Route path='/login' component={Login} />
-                    <Route path='/signup' component={SignUp} />
-                    <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/signup'  component={SignUp} />
+                    <Route path='/dashboard' render={ props => (auth.isLogged) ? React.createElement(Dashboard, props): <Redirect to="/" /> } />
                 </Switch>
-            </BrowserRouter>
-        </Suspense>
+            </Suspense>
+        </BrowserRouter>
     )
 }
 

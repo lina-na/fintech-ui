@@ -5,6 +5,8 @@ import { DEFAULT_USER_AUTH } from '../const';
 const useAuthHandler = (initialState: UserAuth) => {
   const [auth, setAuth] = useState(initialState);
 
+  window.localStorage.setItem('token', JSON.stringify(auth));
+
   const setTokenAuth = (userAuth: UserAuth) => {
     window.localStorage.setItem('token', JSON.stringify(userAuth));
     setAuth(userAuth);

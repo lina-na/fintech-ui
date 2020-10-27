@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useContext } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { TextField , Button, Typography, Card, CardMedia } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
-import { UserLoginForm } from '../../interfaces/user'
+import { UserLoginForm, UserAuth } from '../../interfaces/user'
 import { doLogin } from "../../services/userService";
 import { authSchema } from "../../utils/yup/authSchema";
+import { authContext } from '../../contexts/AuthContext';
 
 import useStyles from './LoginStyles';
 
 import logo from '../../assets/logo.png';
 
-const Login = () => {
+const Login = (props: any) => {
   const classes = useStyles();
+  const auth = useContext(authContext);
 
   const authHandler =  async (data: UserLoginForm) => {
     try {
       const response = await doLogin(data);
-      window.localStorage.setItem('token', JSON.stringify(response));
+      if (response) {
+        const payload: UserAuth = {
+          isLogged: true,
+          token: response || '',
+        };
+        auth.setTokenAuth(payload);
+        props.history.push('/dashboard');
+      }
     }  catch (e) {
       console.log(e);
     }
@@ -45,7 +54,7 @@ const Login = () => {
             initialValues={{ email: 'test@test.ru', password: 'test'}}
             validationSchema={authSchema}
             onSubmit={(values: UserLoginForm) => {
-              authHandler(values).then(() => {});
+              authHandler(values)
             }}
           >
             {(props: FormikProps<UserLoginForm>) => {
@@ -93,9 +102,7 @@ const Login = () => {
                         Sign Up
                       </Button>
                     </Link>
-                    <Button size="small" color="primary">
-                      Forgot password?
-                    </Button>
+
                   </div>
                   <Button className={classes.button}
                           variant="contained"

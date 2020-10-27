@@ -10,3 +10,8 @@ export interface UserSignUpForm {
   password: string;
   confirmPassword: string;
 }
+
+export type UserAuth = {
+  isLogged: boolean,
+  token: string;
+};

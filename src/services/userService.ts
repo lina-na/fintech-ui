@@ -15,6 +15,9 @@ export const userService = axios.create({
 export const timeout = async (ms:number) => new Promise((res) => setTimeout(res, ms));
 
 const request = async (method: axiosReqTypes, api: string, data? :any) => {
+  let auth:any = JSON.parse(<string>window.localStorage.getItem('token'));
+  if(auth.token) userService.defaults.headers.common['token'] = auth.token;
+
   let tries = 0;
   while (tries < 3) {
     try {
@@ -24,7 +27,7 @@ const request = async (method: axiosReqTypes, api: string, data? :any) => {
         data,
       });
     } catch (e) {
-      switch (e.respnse.status){
+      switch (e.response.status){
         case '500':
           tries++;
           await timeout(200);
@@ -45,7 +48,7 @@ export const doLogin = async (record: UserLoginForm) => {
     const response = await request('post', '/api/user/login', record);
     if (response) {
       token = response.data.token;
-      userService.defaults.headers.common['x-token'] = token;
+      userService.defaults.headers.common['token'] = token
       return token;
     }
   } catch (err) {

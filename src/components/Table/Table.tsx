@@ -59,7 +59,7 @@ const TableClients: React.FC = () => {
             if(lists) setRows(lists.data);
         }
         getRows();
-    }, [rows])
+    }, [])
 
     return (
         <Paper className={classes.root}>
