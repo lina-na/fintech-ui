@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CssBaseline} from '@material-ui/core';
+import {Button, Card, CssBaseline, Toolbar, Typography} from '@material-ui/core';
 
 import useStyles from "./DashboardStyles";
 import Headers from "../../components/header/headers";
@@ -12,10 +12,13 @@ const Home: React.FC = () => {
         <>
             <CssBaseline />
             <Headers>
-                <Button className={classes.btn}> Log In </Button>
+                <Button className={classes.btn}> Log Out </Button>
             </Headers>
 
             <main>
+                <Typography variant="h4" className={classes.title}>
+                    Customer list
+                </Typography>
                 <div className={classes.container}>
                     <Card className={classes.card}>
                         <Table/>
