@@ -24,10 +24,17 @@ const request = async (method: axiosReqTypes, api: string, data? :any) => {
         data,
       });
     } catch (e) {
-      if (e.response.status === 500) {
-        tries++;
-        await timeout(200);
-      } else throw new Error(e.response.data.description);
+      switch (e.respnse.status){
+        case '500':
+          tries++;
+          await timeout(200);
+          break;
+        case '401':
+          window.localStorage.clear();
+          break;
+        default:
+          throw new Error(e.response.data.description);
+      }
     }
   }
 };
