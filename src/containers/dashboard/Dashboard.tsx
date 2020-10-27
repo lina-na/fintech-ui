@@ -1,12 +1,19 @@
 import React, {useContext} from 'react';
 import {Button, Card, CssBaseline, Typography} from '@material-ui/core';
+import { RouteComponentProps } from 'react-router-dom';
+
 
 import useStyles from "./DashboardStyles";
 import Headers from "../../components/header/headers";
 import Table from "../../components/Table/Table";
 import {authContext} from "../../contexts/AuthContext";
 
-const Dashboard: React.FC = (props:any ) => {
+type T = {
+    history: string
+}
+
+
+const Dashboard = (props:RouteComponentProps<T> ) => {
     const classes = useStyles();
     const auth = useContext(authContext);
 

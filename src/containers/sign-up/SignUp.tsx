@@ -11,14 +11,14 @@ import useStyles from './SignUpStyles';
 import logo from '../../assets/logo.png';
 import {Link} from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = (props) => {
   const classes = useStyles();
 
 
   const authHandler =  async (data: UserSignUpForm) => {
     try {
       const response = await doSignUp(data);
-      console.log(response);
+      if(response) props.history.push('/login');
     }  catch (e) {
       console.log(e);
     }

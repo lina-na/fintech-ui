@@ -5,7 +5,7 @@ import {ClientForm} from "../interfaces/client";
 
 const backend_host = 'http://localhost:8080';
 
-export const userService = axios.create({
+const userService = axios.create({
   baseURL: backend_host,
   headers: {
     'Content-Type': 'application/json',
@@ -59,12 +59,8 @@ export const doLogin = async (record: UserLoginForm) => {
 export const doSignUp = async (record: UserSignUpForm) => {
   try {
     const {firstname, surname , email, password} = record;
-    const response = await request('post', '/api/user/signup', {firstname, surname, email, password})
-    if (response) {
-      console.log(response);
-      //TODO: check
-    }
-    return response;
+
+    return  await request('post', '/api/user/signup', {firstname, surname, email, password})
   } catch (err) {
     throw new Error(err.message);
   }

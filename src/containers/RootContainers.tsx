@@ -10,9 +10,8 @@ const Home = lazy(() => import('./home/Home'));
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 
 const RootContainer: React.FC = () => {
+    const { auth } = useContext(authContext);
 
-    const { auth } = useContext(authContext)
-    console.log(auth.isLogged);
     return (
         <BrowserRouter>
             <Suspense fallback={<Loading />}>
@@ -20,7 +19,7 @@ const RootContainer: React.FC = () => {
                     <Route exact path='/' component={Home} />
                     <Route path='/login' component={Login} />
                     <Route path='/signup'  component={SignUp} />
-                    <Route path='/dashboard' render={ props => (auth.isLogged) ? React.createElement(Dashboard, props): <Redirect to="/" /> } />
+                    <Route path='/dashboard' render={ props => (auth.isLogged) ? <Dashboard {...props} />: <Redirect to="/" /> } />
                 </Switch>
             </Suspense>
         </BrowserRouter>
