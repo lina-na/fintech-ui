@@ -67,3 +67,19 @@ export const createClient = async (record: ClientForm) => {
     throw new Error(err.message);
   }
 };
+
+export const getClients = async () => {
+  try {
+    return await request('get', '/api/client/');
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export const deleteClient = async (id: string) => {
+  try {
+    return await request('delete', `/api/client/${id}`)
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}

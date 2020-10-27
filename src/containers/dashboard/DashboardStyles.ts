@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: 20,
     },
     card: {
-        width: '800px',
+        width: '900px',
         minWidth: '320px',
         backgroundColor: '#FFFFFF',
         position: 'relative',
