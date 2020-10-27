@@ -61,7 +61,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
   },
   link: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+  },
+  btn: {
+    color: "#fff"
+
   }
 }));
 

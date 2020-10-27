@@ -9,6 +9,7 @@ import { signUpSchema } from "../../utils/yup/authSchema";
 import useStyles from './SignUpStyles';
 
 import logo from '../../assets/logo.png';
+import {Link} from "react-router-dom";
 
 const SignUp = () => {
   const classes = useStyles();
@@ -30,7 +31,7 @@ const SignUp = () => {
           component="img"
           className={classes.media}
           image={logo}
-          title="Exceed Team"
+          title="FinTechs"
         />
         <div className={classes.form}>
 
@@ -52,6 +53,13 @@ const SignUp = () => {
               } = props;
               return (
                 <>
+                  <div className={classes.helpers}>
+                    <Link to='/login' className={classes.link}>
+                      <Button size="small" color="primary">
+                        Go Back
+                      </Button>
+                    </Link>
+                  </div>
                   <TextField className={classes.input}
                              required
                              id="outlined-required"

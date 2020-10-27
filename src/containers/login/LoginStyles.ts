@@ -12,6 +12,11 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     margin: '20px'
   },
+  title: {
+    padding: '8px 0 4px 25px',
+    display: 'flex',
+    width: '100%',
+  },
   input: {
     width: '100%',
     marginTop: '16px',

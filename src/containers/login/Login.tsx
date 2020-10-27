@@ -26,6 +26,13 @@ const Login = () => {
   return (
     <div className={classes.container}>
       <Card className={classes.card}>
+        <div className={classes.title}>
+          <Link to='/' className={classes.link}>
+            <Button size="small" color="primary">
+              Go Back
+            </Button>
+          </Link>
+        </div>
         <CardMedia
           component="img"
           className={classes.media}

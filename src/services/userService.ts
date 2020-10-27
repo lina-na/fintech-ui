@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {UserLoginForm, UserSignUpForm} from '../interfaces/user'
 import { axiosReqTypes } from '../custom-types/userAuth';
+import {ClientForm} from "../interfaces/client";
 
 const backend_host = 'http://localhost:8080';
 
@@ -54,6 +55,14 @@ export const doSignUp = async (record: UserSignUpForm) => {
       //TODO: check
     }
     return response;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export const createClient = async (record: ClientForm) => {
+  try {
+    return await request('post', '/api/client/', record);
   } catch (err) {
     throw new Error(err.message);
   }

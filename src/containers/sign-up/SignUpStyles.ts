@@ -37,6 +37,14 @@ const useStyles = makeStyles({
   errors: {
     fontSize: '14px',
     color: 'red',
+  },
+  helpers: {
+    paddingTop: '8px',
+    display: 'flex',
+    width: '100%',
+  },
+  link: {
+    textDecoration: 'none',
   }
 })
 

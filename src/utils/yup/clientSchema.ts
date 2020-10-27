@@ -14,7 +14,6 @@ export const clientSchema = Yup.object().shape({
     .required()
     .min(3, 'Seems a bit short...'),
   phone: Yup.string()
-    .email('Invalid Phone')
     .label('Phone')
     .required()
     .min(5, 'Seems a bit short...'),
